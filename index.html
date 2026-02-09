@@ -128,6 +128,41 @@
       }
     }
 
+    /* ----- GROUP PHOTO SECTION ----- */
+    .group-photo-section {
+      position: relative;
+      z-index: 1;
+      background: var(--bg);
+      padding: 3rem 1.5rem;
+    }
+
+    .group-photo-container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .group-photo-wrap {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 12px 48px rgba(0,0,0,0.4);
+      aspect-ratio: 16/10;
+      background: var(--surface);
+    }
+
+    .group-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .group-photo-wrap:hover .group-photo {
+      transform: scale(1.02);
+    }
+
     /* ----- STICKY NAV ----- */
     .nav-wrap {
       position: sticky;
@@ -397,6 +432,10 @@
         font-size: 0.9rem;
       }
 
+      .group-photo-section {
+        padding: 2rem 1rem;
+      }
+
       .main {
         padding: 2.5rem 1rem 3rem;
       }
@@ -414,6 +453,14 @@
       <span class="hero-badge">13 · 14 · 15 Febrero</span>
       <h1>Fin de Semana en León</h1>
       <p class="subtitle">Arte y gastronomía Maragata</p>
+    </div>
+  </section>
+
+  <section class="group-photo-section">
+    <div class="group-photo-container">
+      <div class="group-photo-wrap">
+        <img src="images/grupo-catedral.jpg" alt="Nuestro grupo en la Catedral de León" class="group-photo">
+      </div>
     </div>
   </section>
 
@@ -478,10 +525,6 @@
           <img src="images/catedral-leon.jpg" alt="Catedral de León" class="monument-image" loading="lazy">
         </div>
         <p class="monument-caption">Catedral de León — Joya del arte gótico</p>
-        <div class="monument-image-wrap" style="margin-top: 1.25rem;">
-          <img src="images/grupo-catedral.jpg" alt="Nosotros en la Catedral de León" class="monument-image" loading="lazy">
-        </div>
-        <p class="monument-caption">¡Nosotros frente a la majestuosa Catedral!</p>
         <div class="highlights">
           <h3>Curiosidades de la Catedral</h3>
           <ul>
