@@ -117,47 +117,6 @@
       animation: fadeUp 0.8s ease 0.5s forwards;
     }
 
-    .scroll-hint {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      color: var(--text-muted);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      opacity: 0;
-      animation: fadeUp 0.8s ease 0.9s forwards;
-      text-align: center;
-      white-space: nowrap;
-    }
-
-    .scroll-hint .mouse {
-      width: 24px;
-      height: 38px;
-      border: 2px solid var(--text-muted);
-      border-radius: 12px;
-      position: relative;
-    }
-
-    .scroll-hint .mouse::after {
-      content: '';
-      position: absolute;
-      top: 8px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 4px;
-      height: 8px;
-      background: var(--gold);
-      border-radius: 2px;
-      animation: scrollDot 2s ease-in-out infinite;
-    }
-
     @keyframes fadeUp {
       from {
         opacity: 0;
@@ -167,11 +126,6 @@
         opacity: 1;
         transform: translateY(0);
       }
-    }
-
-    @keyframes scrollDot {
-      0%, 100% { opacity: 1; transform: translateX(-50%) translateY(0); }
-      50% { opacity: 0.3; transform: translateX(-50%) translateY(8px); }
     }
 
     /* ----- STICKY NAV ----- */
@@ -461,10 +415,6 @@
       <h1>Fin de Semana en León</h1>
       <p class="subtitle">Arte y gastronomía Maragata</p>
     </div>
-    <a href="#programa" class="scroll-hint" aria-label="Bajar al programa">
-      <span class="mouse"></span>
-      Descubre el programa
-    </a>
   </section>
 
   <nav class="nav-wrap" id="programa">
@@ -482,7 +432,7 @@
       <article class="activity">
         <div class="activity-time">🚗 17:00 — Salida de Madrid</div>
         <div class="activity-description">
-          Comenzamos nuestro viaje hacia la histórica ciudad de León. Prepárate para una experiencia inolvidable en el corazón de Castilla y León.
+          Comenzamos nuestro viaje hacia la histórica ciudad de León. Los Mugaritx por León!
         </div>
       </article>
 
@@ -654,12 +604,6 @@
       document.getElementById(dia).classList.add('active');
       if (tabElement) tabElement.classList.add('active');
     }
-
-    // Smooth scroll for anchor
-    document.querySelector('.scroll-hint')?.addEventListener('click', function(e) {
-      e.preventDefault();
-      document.getElementById('programa')?.scrollIntoView({ behavior: 'smooth' });
-    });
   </script>
 </body>
 </html>
