@@ -1,0 +1,9 @@
+<svg width="800" height="500" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="500" fill="#1a191e"/>
+  <text x="400" y="230" font-family="'DM Sans', sans-serif" font-size="32" fill="#d4a84b" text-anchor="middle" font-weight="600">
+    Castrillo de los Polvazares
+  </text>
+  <text x="400" y="270" font-family="'DM Sans', sans-serif" font-size="18" fill="#9a9691" text-anchor="middle">
+    [Agrega tu propia imagen aquí]
+  </text>
+</svg>
