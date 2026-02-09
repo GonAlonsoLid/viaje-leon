@@ -221,6 +221,48 @@
       transform: scale(0.98);
     }
 
+    /* ----- INTRO SECTION ----- */
+    .intro-section {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 2rem;
+    }
+
+    .intro-content {
+      text-align: center;
+    }
+
+    .intro-image-wrap {
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    }
+
+    .intro-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .intro-image-wrap:hover .intro-image {
+      transform: scale(1.02);
+    }
+
+    .intro-text {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      font-style: italic;
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
     /* ----- MAIN CONTENT ----- */
     .main {
       position: relative;
@@ -441,6 +483,14 @@
         font-size: 0.9rem;
       }
 
+      .intro-section {
+        padding: 2rem 1rem 1.5rem;
+      }
+
+      .intro-text {
+        font-size: 1rem;
+      }
+
       .main {
         padding: 2.5rem 1rem 3rem;
       }
@@ -472,6 +522,15 @@
       <button type="button" class="nav-tab" onclick="mostrarDia('domingo', this)">Domingo 15</button>
     </div>
   </nav>
+
+  <section class="intro-section">
+    <div class="intro-content">
+      <div class="intro-image-wrap">
+        <img src="images/grupo-catedral.jpg" alt="Nuestro grupo en la Catedral de León" class="intro-image">
+      </div>
+      <p class="intro-text">Un fin de semana inolvidable explorando la historia, arte y gastronomía de León</p>
+    </div>
+  </section>
 
   <main class="main">
     <div id="viernes" class="day-section active">
@@ -526,6 +585,10 @@
           <img src="images/catedral-leon.jpg" alt="Catedral de León" class="monument-image" loading="lazy">
         </div>
         <p class="monument-caption">Catedral de León — Joya del arte gótico</p>
+        <div class="monument-image-wrap" style="margin-top: 1.25rem;">
+          <img src="images/grupo-catedral.jpg" alt="Nosotros en la Catedral de León" class="monument-image" loading="lazy">
+        </div>
+        <p class="monument-caption">¡Nosotros frente a la majestuosa Catedral!</p>
         <div class="highlights">
           <h3>Curiosidades de la Catedral</h3>
           <ul>
