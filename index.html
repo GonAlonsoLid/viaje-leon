@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fin de Semana en León — Folleto de Viaje</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c0b0e;
+      --surface: #16141a;
+      --surface-hover: #1e1c24;
+      --gold: #d4a84b;
+      --gold-soft: rgba(212, 168, 75, 0.2);
+      --gold-glow: rgba(212, 168, 75, 0.4);
+      --text: #e8e6e3;
+      --text-muted: #9a9691;
+      --border: rgba(255,255,255,0.06);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --font-head: 'Fraunces', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Subtle grid background */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ----- HERO ----- */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://pplx-res.cloudinary.com/image/upload/v1769542369/search_images/fb6ffb388020fd4bc4d9a7b7a5f9a6bee782d612.jpg') center/cover no-repeat;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(12,11,14,0.4) 0%, rgba(12,11,14,0.85) 50%, var(--bg) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 720px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.35s forwards;
+    }
+
+    .hero .subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      color: var(--text-muted);
+      font-weight: 400;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.5s forwards;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.9s forwards;
+    }
+
+    .scroll-hint .mouse {
+      width: 24px;
+      height: 38px;
+      border: 2px solid var(--text-muted);
+      border-radius: 12px;
+      position: relative;
+    }
+
+    .scroll-hint .mouse::after {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 2px;
+      animation: scrollDot 2s ease-in-out infinite;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scrollDot {
+      0%, 100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      50% { opacity: 0.3; transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ----- STICKY NAV ----- */
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(12,11,14,0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .nav-tab {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 999px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      background: transparent;
+      cursor: pointer;
+      transition: color 0.25s ease, background 0.25s ease, transform 0.2s ease;
+    }
+
+    .nav-tab:hover {
+      color: var(--text);
+      background: var(--surface-hover);
+    }
+
+    .nav-tab.active {
+      color: var(--bg);
+      background: var(--gold);
+      box-shadow: 0 0 24px var(--gold-soft);
+    }
+
+    .nav-tab:active {
+      transform: scale(0.98);
+    }
+
+    /* ----- MAIN CONTENT ----- */
+    .main {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem 5rem;
+    }
+
+    .day-section {
+      display: none;
+    }
+
+    .day-section.active {
+      display: block;
+    }
+
+    .day-section.active .activity {
+      animation: cardIn 0.6s ease forwards;
+    }
+
+    .day-section.active .activity:nth-child(1) { animation-delay: 0.05s; }
+    .day-section.active .activity:nth-child(2) { animation-delay: 0.1s; }
+    .day-section.active .activity:nth-child(3) { animation-delay: 0.15s; }
+    .day-section.active .activity:nth-child(4) { animation-delay: 0.2s; }
+    .day-section.active .activity:nth-child(5) { animation-delay: 0.25s; }
+    .day-section.active .activity:nth-child(6) { animation-delay: 0.3s; }
+    .day-section.active .activity:nth-child(7) { animation-delay: 0.35s; }
+    .day-section.active .activity:nth-child(8) { animation-delay: 0.4s; }
+    .day-section.active .activity:nth-child(9) { animation-delay: 0.45s; }
+
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .day-title {
+      font-family: var(--font-head);
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 2rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--gold-soft);
+    }
+
+    /* ----- ACTIVITY CARDS ----- */
+    .activity {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      opacity: 0;
+    }
+
+    .activity:hover {
+      transform: translateY(-2px);
+      border-color: rgba(212, 168, 75, 0.2);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    .activity-time {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .activity-description {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 1rem;
+    }
+
+    .activity-description:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .monument-image-wrap {
+      margin-top: 1.25rem;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 16/10;
+      background: var(--surface-hover);
+    }
+
+    .monument-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .activity:hover .monument-image {
+      transform: scale(1.03);
+    }
+
+    .monument-caption {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    .restaurant-highlight {
+      background: var(--gold-soft);
+      border: 1px solid rgba(212, 168, 75, 0.3);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      margin: 0.75rem 0;
+      font-size: 0.9rem;
+    }
+
+    .restaurant-highlight strong {
+      color: var(--gold);
+    }
+
+    /* ----- HIGHLIGHTS ----- */
+    .highlights {
+      background: var(--gold-soft);
+      border: 1px solid rgba(212, 168, 75, 0.25);
+      padding: 1.25rem 1.5rem;
+      border-radius: var(--radius-sm);
+      margin: 1.5rem 0 0;
+    }
+
+    .highlights h3 {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.02em;
+    }
+
+    .highlights ul {
+      list-style: none;
+    }
+
+    .highlights li {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      padding: 0.35rem 0;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .highlights li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.65rem;
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    /* ----- FOOTER ----- */
+    .footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 3rem 1.5rem;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+    }
+
+    .footer p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      max-width: 480px;
+      margin: 0 auto 0.5rem;
+    }
+
+    .footer p:first-child {
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    /* ----- SCROLL REVEAL (optional enhancement) ----- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 600px) {
+      .hero {
+        padding: 1.5rem;
+      }
+
+      .nav-inner {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .nav-tab {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      .main {
+        padding: 2.5rem 1rem 3rem;
+      }
+
+      .activity {
+        padding: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="hero-content">
+      <span class="hero-badge">13 · 14 · 15 Febrero</span>
+      <h1>Fin de Semana en León</h1>
+      <p class="subtitle">Descubre la magia de la Maragatería</p>
+    </div>
+    <a href="#programa" class="scroll-hint" aria-label="Bajar al programa">
+      <span class="mouse"></span>
+      Descubre el programa
+    </a>
+  </section>
+
+  <nav class="nav-wrap" id="programa">
+    <div class="nav-inner">
+      <button type="button" class="nav-tab active" onclick="mostrarDia('viernes', this)">Viernes 13</button>
+      <button type="button" class="nav-tab" onclick="mostrarDia('sabado', this)">Sábado 14</button>
+      <button type="button" class="nav-tab" onclick="mostrarDia('domingo', this)">Domingo 15</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div id="viernes" class="day-section active">
+      <h2 class="day-title">Viernes 13 — Llegada</h2>
+
+      <article class="activity">
+        <div class="activity-time">🚗 17:00 — Salida de Madrid</div>
+        <div class="activity-description">
+          Comenzamos nuestro viaje hacia la histórica ciudad de León. Prepárate para una experiencia inolvidable en el corazón de Castilla y León.
+        </div>
+      </article>
+
+      <article class="activity">
+        <div class="activity-time">🏨 20:30 — Llegada al Hostal de San Marcos</div>
+        <div class="activity-description">
+          Nos alojamos en el emblemático Hostal de San Marcos, un edificio histórico en el centro de León.
+        </div>
+        <div class="monument-image-wrap">
+          <img src="https://pplx-res.cloudinary.com/image/upload/v1770624292/search_images/6c99813e5bb0eb3379a379454183360516cd4675.jpg" alt="Hostal San Marcos" class="monument-image" loading="lazy">
+        </div>
+        <p class="monument-caption">Hostal de San Marcos — Lugar de alojamiento</p>
+      </article>
+
+      <article class="activity">
+        <div class="activity-time">🍽️ 21:45 — Cena en Casa Mando</div>
+        <div class="restaurant-highlight">
+          <strong>Casa Mando</strong> — Restaurante tradicional leonés
+        </div>
+        <div class="activity-description">
+          Después de la cena, disfrutaremos de un agradable paseo de 20 minutos por el centro histórico, pasando por la Plaza de San Marcelo donde veremos la Casa Botines y el Palacio de los Guzmanes.
+        </div>
+        <div class="highlights">
+          <h3>Lo que verás en el paseo</h3>
+          <ul>
+            <li>Plaza de San Marcelo</li>
+            <li>Casa Botines</li>
+            <li>Palacio de los Guzmanes</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <div id="sabado" class="day-section">
+      <h2 class="day-title">Sábado 14 — Exploración completa</h2>
+
+      <article class="activity">
+        <div class="activity-time">⛪ 10:00 — Visita a la Catedral de León</div>
+        <div class="activity-description">
+          Comienza nuestro día con la visita a la impresionante Catedral de León, conocida como la "Pulchra Leonina". Bordeando la Basílica de San Isidoro, pasamos por Santa Marina la Real para alcanzar este magnífico templo gótico.
+        </div>
+        <div class="monument-image-wrap">
+          <img src="https://pplx-res.cloudinary.com/image/upload/v1769542369/search_images/fb6ffb388020fd4bc4d9a7b7a5f9a6bee782d612.jpg" alt="Catedral de León" class="monument-image" loading="lazy">
+        </div>
+        <p class="monument-caption">Catedral de León — Joya del arte gótico</p>
+        <div class="highlights">
+          <h3>Curiosidades de la Catedral</h3>
+          <ul>
+            <li>Obra maestra del gótico español</li>
+            <li>Construcción iniciada en 1205</li>
+            <li>Vidrieras de incomparable belleza</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="activity">
+        <div class="activity-time">🚗 11:30 — Salida hacia Astorga</div>
+        <div class="activity-description">
+          Viaje de 50 minutos hasta la ciudad de Astorga, famosa por su patrimonio histórico, arquitectónico y culinario.
+        </div>
+      </article>
+
+      <article class="activity">
+        <div class="activity-time">🏛️ Visita a Astorga — Catedral y Palacio de Gaudí</div>
+        <div class="activity-description">
+          Exploramos la ciudad de Astorga, visitando su Catedral y el espectacular Palacio Episcopal diseñado por Antoni Gaudí, una verdadera joya arquitectónica.
+        </div>
+        <div class="monument-image-wrap">
+          <img src="https://pplx-res.cloudinary.com/image/upload/v1770624292/search_images/13a593bf743c98c2e1409cafb0b3a478e90f340e.jpg" alt="Palacio de Gaudí" class="monument-image" loading="lazy">
+        </div>
+        <p class="monument-caption">Palacio Episcopal de Gaudí en Astorga</p>
+      </article>
+
+      <article class="activity">
+        <div class="activity-time">🍽️ 13:45 — Comida en Castrillo de los Polvazares</div>
+        <div class="restaurant-highlight">
+          <strong>Restaurante Coscolo</strong> — Comida tradicional maragata
+        </div>
+        <div class="activity-description">
+          Nos dirigimos a Castrillo de los Polvazares, un pueblo de gran encanto donde disfrutaremos del famoso "Cocido Maragato". Después de comer, pasearemos por el pueblo para saborear su atmósfera medieval.
+        </div>
+        <div class="monument-image-wrap">
+          <img src="https://pplx-res.cloudinary.com/image/upload/v1770624292/search_images/43d526d92eec3085ff876613b7e694e00f9d4675.jpg" alt="Castrillo de los Polvazares" class="monument-image" loading="lazy">
+        </div>
+        <p class="monument-caption">Castrillo de los Polvazares — Pueblo con encanto histórico</p>
+      </article>
+
+      <article class="activity">
+        <div class="activity-time">⛪ 19:30 — Misa en la Iglesia de Santa María del Mercado</div>
+        <div class="activity-description">
+          Regresamos a León para asistir a la misa en la Iglesia de Santa María del Mercado, uno de los templos más significativos de la ciudad, que solo se pueden visitar antes y después de la liturgia.
+        </div>
+      </article>
+
+      <article class="activity">
+        <div class="activity-time">🍷 Después de la misa — Paseo por el Barrio Húmedo</div>
+        <div class="activity-description">
+          Por la noche, disfrutaremos de paseos y vinos en el famoso Barrio Húmedo de León, conocido por sus tradicionales tabernas y ambiente acogedor.
+        </div>
+      </article>
+    </div>
+
+    <div id="domingo" class="day-section">
+      <h2 class="day-title">Domingo 15 — Despedida</h2>
+
+      <article class="activity">
+        <div class="activity-time">🕯️ 10:15 — Visita guiada a San Isidoro de León</div>
+        <div class="activity-description">
+          Comenzamos con una visita guiada a la Real Basílica de San Isidoro, uno de los templos más importantes del arte medieval español. Nos deleitaremos en el Panteón de Reyes y su museo recién reinaugurado.
+        </div>
+        <div class="monument-image-wrap">
+          <img src="https://pplx-res.cloudinary.com/image/upload/v1769884975/search_images/0ca8c13952f2308f690f93b3f578bfcde121e038.jpg" alt="Basílica San Isidoro" class="monument-image" loading="lazy">
+        </div>
+        <p class="monument-caption">Basílica de San Isidoro — Joya del arte medieval</p>
+        <div class="highlights">
+          <h3>Tesoros de San Isidoro</h3>
+          <ul>
+            <li>Panteón de Reyes de León</li>
+            <li>Museo de arte románico</li>
+            <li>Arquitectura prerrománica y románica</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="activity">
+        <div class="activity-time">🏛️ 11:30 — Recorrido por plazas y edificios civiles</div>
+        <div class="activity-description">
+          Paseo por las principales plazas y edificios civiles históricos de León descubriendo la riqueza arquitectónica y la historia que encierran las calles del casco antiguo.
+        </div>
+      </article>
+
+      <article class="activity">
+        <div class="activity-time">🏨 13:30 — Visita al Hostal de San Marcos y comida</div>
+        <div class="activity-description">
+          Regresamos al Hostal de San Marcos para disfrutar de una comida ligera antes de regresar a Madrid. Aprovecharemos estas últimas horas para admirar la belleza de este histórico convento convertido en parador con muchos rincones secretos y una reforma espectacular recién inaugurada.
+        </div>
+      </article>
+
+      <div class="highlights" style="margin-top: 1.5rem;">
+        <h3>Recuerdos para llevar</h3>
+        <ul>
+          <li>La majestuosidad de la Catedral de León</li>
+          <li>La arquitectura única de Gaudí en Astorga</li>
+          <li>El sabor del Cocido Maragato</li>
+          <li>La historia medieval de la Maragatería</li>
+          <li>La hospitalidad leonesa</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>Fin de Semana en León y la Maragatería — Una experiencia inolvidable</p>
+    <p>Viaje diseñado para descubrir el patrimonio histórico y cultural de Castilla y León</p>
+  </footer>
+
+  <script>
+    function mostrarDia(dia, tabElement) {
+      document.querySelectorAll('.day-section').forEach(function(section) {
+        section.classList.remove('active');
+      });
+      document.querySelectorAll('.nav-tab').forEach(function(tab) {
+        tab.classList.remove('active');
+      });
+      document.getElementById(dia).classList.add('active');
+      if (tabElement) tabElement.classList.add('active');
+    }
+
+    // Smooth scroll for anchor
+    document.querySelector('.scroll-hint')?.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('programa')?.scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>
